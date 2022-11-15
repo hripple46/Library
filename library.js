@@ -13,13 +13,42 @@ function Book(title, author, pages, readStatus) {
 }
 
 //prototype function that will add the book object to the global array when called
-Book.prototype.addBookToLibrary = function () {
+Book.prototype.addBookToArray = function () {
   myLibrary.push(this);
 };
 
-book1.addBookToLibrary();
-book2.addBookToLibrary();
-console.log(myLibrary);
-for (let i in myLibrary) {
-  console.log(myLibrary[i]);
+//pre-made book objects for testing
+book1.addBookToArray();
+book2.addBookToArray();
+
+//main function for adding books to webpage
+function addBookToLibrary() {
+  console.log("Click!");
+
+  for (let i in myLibrary) {
+    let body = document.querySelector(".library");
+    let libraryCard = document.createElement("div");
+    libraryCard.setAttribute("class", "libraryCard");
+    libraryCard.setAttribute("id", `${[i]}`);
+
+    //looping oeach book object to obtain properties
+    for (let key in myLibrary[i]) {
+      if (key != "addBookToArray") {
+        console.log(key);
+        let bookProperty = document.createElement("p");
+        bookProperty.innerText = myLibrary[i][key];
+        libraryCard.appendChild(bookProperty);
+      } else {
+        break;
+      }
+    }
+    //adding book to webpage
+    body.appendChild(libraryCard);
+  }
 }
+
+//event listener for submission to display books
+let button = document.querySelector("#buttonClick");
+button.addEventListener("click", () => {
+  addBookToLibrary();
+});
