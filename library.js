@@ -18,12 +18,22 @@ Book.prototype.addBookToArray = function () {
 };
 
 //pre-made book objects for testing
-book1.addBookToArray();
-book2.addBookToArray();
 
 //main function for adding books to webpage
 function addBookToLibrary() {
   console.log("Click!");
+
+  //resetting webpage
+  let existingCards = document.querySelectorAll(".libraryCard");
+  existingCards.forEach((libraryCard) => {
+    libraryCard.remove();
+  });
+
+  //reset array
+  myLibrary = [];
+  //pre-made book objects for testing
+  book1.addBookToArray();
+  book2.addBookToArray();
 
   for (let i in myLibrary) {
     let body = document.querySelector(".library");
