@@ -1,10 +1,25 @@
+html {
+  height: 100%;
+}
 body {
+  margin: 0;
   width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: 1fr 3fr;
 }
 .libraryCard {
+  margin: auto;
   height: 200px;
-  width: 100px;
   border: 1px solid black;
+  width: 80%;
+  background-color: #003844;
+  text-align: center;
+  box-shadow: 0px 0px 10px 2px gray;
+  border-radius: 4px;
+}
+.libraryCard p {
+  color: white;
 }
 
 #bookFormDiv {
@@ -13,7 +28,58 @@ body {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  border: 2px solid black;
-  height: 300px;
-  width: 300px;
+  height: 50%;
+  width: 50%;
+  background-color: #79addc;
+  box-shadow: 0 0 40px 8px grey;
+  border-radius: 3px;
+}
+
+label {
+  display: inline-block;
+  text-align: right;
+}
+
+.library {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  background-color: #d1ca98;
+}
+.sidebar {
+  background-color: #ef7b45;
+  height: 100%;
+}
+
+#newBookForm {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+}
+label {
+  grid-column-start: 2;
+  height: 50%;
+  width: 100%;
+  margin: auto;
+}
+.radio label {
+  width: auto;
+}
+input[type="text"],
+input[type="number"] {
+  width: 90%;
+  height: 50%;
+  margin: auto;
+}
+#statusLabel {
+  grid-column-start: 2;
+  text-align: right;
+}
+.radio {
+  margin: auto;
+}
+#submitBtn {
+  grid-row-start: 5;
+  grid-column: 2 / 4;
 }

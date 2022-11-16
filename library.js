@@ -69,7 +69,8 @@ newBookBtn.addEventListener("click", () => {
 });
 
 //function to hide form on button press
-let hideForm = document.querySelector("#hideBtn");
-hideForm.addEventListener("click", () => {
+let submitForm = document.querySelector("#submitBtn");
+submitForm.addEventListener("click", () => {
   document.querySelector("#bookFormDiv").style.display = "none";
+  return;
 });

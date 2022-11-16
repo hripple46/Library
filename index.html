@@ -8,14 +8,32 @@
     <title>Library</title>
   </head>
   <body>
-    <button id="newBook">Add New Book</button>
-
-    <button id="buttonClick">Display Library</button>
+    <div class="sidebar">
+      <button id="newBook">Add New Book</button>
+      <button id="buttonClick">Display Library</button>
+    </div>
     <div id="bookFormDiv">
       <form id="newBookForm">
-        <input type="text" />
+        <label for="bookTitle">Book Title: </label>
+        <input type="text" name="bookTitle" />
+
+        <label for="bookAuthor">Author: </label>
+        <input type="text" name="bookAuthor" />
+
+        <label for="bookPages">Total Pages: </label>
+        <input type="number" name="bookPages" />
+
+        <p id="statusLabel">Have You Read?</p>
+
+        <div class="radio">
+          <label for="yes">Yes</label>
+          <input type="radio" id="yes" name="readStatus" value="Yes" />
+          <label for="no">No</label
+          ><input type="radio" id="no" name="readStatus" value="No" />
+        </div>
+
+        <button type="button" id="submitBtn">Submit</button>
       </form>
-      <button id="hideBtn">Hide</button>
     </div>
 
     <div class="library"></div>
