@@ -1,9 +1,5 @@
 let myLibrary = [];
 
-//preset book objects to test program
-let book1 = new Book("Harry Potter", "JK Rowling", "320", "Have Read");
-let book2 = new Book("The Hobbit", "JRR Tolkien", "1000", "Have Not Read");
-
 //book constructor
 function Book(title, author, pages, readStatus) {
   this.title = title;
@@ -22,7 +18,9 @@ Book.prototype.addBookToArray = function () {
 //main function for adding books to webpage
 function addBookToLibrary() {
   console.log("Click!");
-
+  //adding test books on click
+  let book1 = new Book("Harry Potter", "JK Rowling", "320", "Have Read");
+  let book2 = new Book("The Hobbit", "JRR Tolkien", "1000", "Have Not Read");
   //resetting webpage
   let existingCards = document.querySelectorAll(".libraryCard");
   existingCards.forEach((libraryCard) => {
@@ -31,6 +29,7 @@ function addBookToLibrary() {
 
   //reset array
   myLibrary = [];
+
   //pre-made book objects for testing
   book1.addBookToArray();
   book2.addBookToArray();
@@ -61,4 +60,16 @@ function addBookToLibrary() {
 let button = document.querySelector("#buttonClick");
 button.addEventListener("click", () => {
   addBookToLibrary();
+});
+
+//function to have button pop up form
+let newBookBtn = document.querySelector("#newBook");
+newBookBtn.addEventListener("click", () => {
+  document.querySelector("#bookFormDiv").style.display = "block";
+});
+
+//function to hide form on button press
+let hideForm = document.querySelector("#hideBtn");
+hideForm.addEventListener("click", () => {
+  document.querySelector("#bookFormDiv").style.display = "none";
 });

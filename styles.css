@@ -1,5 +1,19 @@
+body {
+  width: 100%;
+}
 .libraryCard {
   height: 200px;
   width: 100px;
   border: 1px solid black;
+}
+
+#bookFormDiv {
+  display: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: 2px solid black;
+  height: 300px;
+  width: 300px;
 }
