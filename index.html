@@ -17,18 +17,18 @@
         <input type="text" id="titleInput" name="bookTitle" />
 
         <label for="bookAuthor">Author: </label>
-        <input type="text" name="bookAuthor" />
+        <input type="text" id="authorInput" name="bookAuthor" />
 
         <label for="bookPages">Total Pages: </label>
-        <input type="number" name="bookPages" />
+        <input type="number" id="pagesInput" name="bookPages" />
 
         <p id="statusLabel">Have You Read?</p>
 
         <div class="radio">
           <label for="yes">Yes</label>
-          <input type="radio" id="yes" name="readStatus" value="Yes" />
+          <input type="radio" id="yes" name="toggleRead" value="Yes" />
           <label for="no">No</label
-          ><input type="radio" id="no" name="readStatus" value="No" />
+          ><input type="radio" id="no" name="toggleRead" value="No" />
         </div>
 
         <button type="button" id="submitBtn">Submit</button>

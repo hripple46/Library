@@ -15,15 +15,31 @@ Book.prototype.addBookToArray = function () {
   myLibrary.push(this);
 };
 
+//toggle read status function
+Book.prototype.toggleReadStatus = function () {};
+
 //pre-made book objects for testing
 
 //main function for adding books to webpage
 function addBookToLibrary() {
   console.log("Click!");
   //adding test books on click
-
+  let userReadStatus = "";
   let userInputTitle = document.querySelector("#titleInput");
-  let newBook = new Book(userInputTitle.value, "", "", "");
+  let userInputAuthor = document.querySelector("#authorInput");
+  let userInputPages = document.querySelector("#pagesInput");
+  if (document.getElementById("yes").checked) {
+    userReadStatus = document.querySelector("#yes");
+  } else {
+    userReadStatus = document.querySelector("#no");
+  }
+
+  let newBook = new Book(
+    userInputTitle.value,
+    userInputAuthor.value,
+    userInputPages.value,
+    userReadStatus.value
+  );
   //resetting webpage
   let existingCards = document.querySelectorAll(".libraryCard");
   existingCards.forEach((libraryCard) => {
