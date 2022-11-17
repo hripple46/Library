@@ -1,5 +1,7 @@
 let myLibrary = [];
 
+let selectedBookDelete = "";
+
 //book constructor
 function Book(title, author, pages, readStatus) {
   this.title = title;
@@ -50,6 +52,18 @@ function addBookToLibrary() {
         break;
       }
     }
+    //delete book card button
+    let deleteBtn = document.createElement("button");
+    deleteBtn.setAttribute("id", `${[i]}`);
+    deleteBtn.setAttribute("class", "deleteBtn");
+
+    deleteBtn.innerText = "Remove";
+    libraryCard.appendChild(deleteBtn);
+    deleteBtn.addEventListener("click", () => {
+      selectedBookDelete = `${[i]}`;
+      deleteBook();
+    });
+
     //adding book to webpage
     body.appendChild(libraryCard);
   }
@@ -71,3 +85,14 @@ submitForm.addEventListener("click", () => {
 
   addBookToLibrary();
 });
+
+function deleteBook() {
+  let deleteBook = document.querySelectorAll(".libraryCard");
+  deleteBook.forEach((chosenBook) => {
+    if (chosenBook.getAttribute("id") == selectedBookDelete) {
+      chosenBook.remove();
+      myLibrary.splice(`${chosenBook.getAttribute("id")}`, 1);
+    }
+  });
+  selectedBookDelete = "";
+}
