@@ -19,8 +19,9 @@ Book.prototype.addBookToArray = function () {
 function addBookToLibrary() {
   console.log("Click!");
   //adding test books on click
-  let book1 = new Book("Harry Potter", "JK Rowling", "320", "Have Read");
-  let book2 = new Book("The Hobbit", "JRR Tolkien", "1000", "Have Not Read");
+
+  let userInputTitle = document.querySelector("#titleInput");
+  let newBook = new Book(userInputTitle.value, "", "", "");
   //resetting webpage
   let existingCards = document.querySelectorAll(".libraryCard");
   existingCards.forEach((libraryCard) => {
@@ -28,11 +29,10 @@ function addBookToLibrary() {
   });
 
   //reset array
-  myLibrary = [];
 
   //pre-made book objects for testing
-  book1.addBookToArray();
-  book2.addBookToArray();
+
+  newBook.addBookToArray();
 
   for (let i in myLibrary) {
     let body = document.querySelector(".library");
@@ -43,7 +43,6 @@ function addBookToLibrary() {
     //looping oeach book object to obtain properties
     for (let key in myLibrary[i]) {
       if (key != "addBookToArray") {
-        console.log(key);
         let bookProperty = document.createElement("p");
         bookProperty.innerText = myLibrary[i][key];
         libraryCard.appendChild(bookProperty);
@@ -54,13 +53,10 @@ function addBookToLibrary() {
     //adding book to webpage
     body.appendChild(libraryCard);
   }
+  document.querySelector("#newBookForm").reset();
 }
 
 //event listener for submission to display books
-let button = document.querySelector("#buttonClick");
-button.addEventListener("click", () => {
-  addBookToLibrary();
-});
 
 //function to have button pop up form
 let newBookBtn = document.querySelector("#newBook");
@@ -72,5 +68,6 @@ newBookBtn.addEventListener("click", () => {
 let submitForm = document.querySelector("#submitBtn");
 submitForm.addEventListener("click", () => {
   document.querySelector("#bookFormDiv").style.display = "none";
-  return;
+
+  addBookToLibrary();
 });

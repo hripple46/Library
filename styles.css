@@ -83,3 +83,18 @@ input[type="number"] {
   grid-row-start: 5;
   grid-column: 2 / 4;
 }
+
+#buttonClick,
+#newBook {
+  flex: 1;
+  max-height: 60px;
+  min-height: 45px;
+  margin: auto;
+  margin-top: 25px;
+  min-width: 76px;
+  max-width: 105px;
+}
+.sidebar {
+  display: flex;
+  flex-flow: row wrap;
+}
