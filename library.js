@@ -61,7 +61,8 @@ function addBookToLibrary() {
     libraryCard.appendChild(deleteBtn);
     deleteBtn.addEventListener("click", () => {
       selectedBookDelete = `${[i]}`;
-      deleteBook();
+
+      deleteBookFun();
     });
 
     //adding book to webpage
@@ -86,13 +87,50 @@ submitForm.addEventListener("click", () => {
   addBookToLibrary();
 });
 
-function deleteBook() {
+function deleteBookFun() {
   let deleteBook = document.querySelectorAll(".libraryCard");
   deleteBook.forEach((chosenBook) => {
     if (chosenBook.getAttribute("id") == selectedBookDelete) {
+      myLibrary.splice(chosenBook.getAttribute("id"), 1);
       chosenBook.remove();
-      myLibrary.splice(`${chosenBook.getAttribute("id")}`, 1);
     }
   });
-  selectedBookDelete = "";
+
+  //resetting webpage
+  let existingCards = document.querySelectorAll(".libraryCard");
+  existingCards.forEach((libraryCard) => {
+    libraryCard.remove();
+  });
+  for (let i in myLibrary) {
+    let body = document.querySelector(".library");
+    let libraryCard = document.createElement("div");
+    libraryCard.setAttribute("class", "libraryCard");
+    libraryCard.setAttribute("id", `${[i]}`);
+
+    //looping oeach book object to obtain properties
+    for (let key in myLibrary[i]) {
+      if (key != "addBookToArray") {
+        let bookProperty = document.createElement("p");
+        bookProperty.innerText = myLibrary[i][key];
+        libraryCard.appendChild(bookProperty);
+      } else {
+        break;
+      }
+    }
+    //delete book card button
+    let deleteBtn = document.createElement("button");
+    deleteBtn.setAttribute("id", `${[i]}`);
+    deleteBtn.setAttribute("class", "deleteBtn");
+
+    deleteBtn.innerText = "Remove";
+    libraryCard.appendChild(deleteBtn);
+    deleteBtn.addEventListener("click", () => {
+      selectedBookDelete = `${[i]}`;
+
+      deleteBookFun();
+    });
+
+    //adding book to webpage
+    body.appendChild(libraryCard);
+  }
 }
