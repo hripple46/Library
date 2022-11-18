@@ -2,6 +2,8 @@ let myLibrary = [];
 
 let selectedBookDelete = "";
 
+let selectedBookToggle = "";
+
 //book constructor
 function Book(title, author, pages, readStatus) {
   this.title = title;
@@ -14,9 +16,6 @@ function Book(title, author, pages, readStatus) {
 Book.prototype.addBookToArray = function () {
   myLibrary.push(this);
 };
-
-//toggle read status function
-Book.prototype.toggleReadStatus = function () {};
 
 //pre-made book objects for testing
 
@@ -68,6 +67,16 @@ function addBookToLibrary() {
         break;
       }
     }
+    let toggleStatusBtn = document.createElement("button");
+    toggleStatusBtn.setAttribute("class", "toggleBtn");
+    toggleStatusBtn.setAttribute("id", `${[i]}toggle`);
+    toggleStatusBtn.innerText = "Change Status";
+    libraryCard.appendChild(toggleStatusBtn);
+    toggleStatusBtn.onclick = function () {
+      selectedBookToggle = `${[i]}`;
+      toggleReadStatus();
+    };
+
     //delete book card button
     let deleteBtn = document.createElement("button");
     deleteBtn.setAttribute("id", `${[i]}`);
@@ -133,6 +142,80 @@ function deleteBookFun() {
         break;
       }
     }
+    let toggleStatusBtn = document.createElement("button");
+    toggleStatusBtn.setAttribute("class", "toggleBtn");
+    toggleStatusBtn.setAttribute("id", `${[i]}toggle`);
+    toggleStatusBtn.innerText = "Change Status";
+    libraryCard.appendChild(toggleStatusBtn);
+    toggleStatusBtn.onclick = function () {
+      selectedBookToggle = `${[i]}`;
+      toggleReadStatus();
+    };
+    //delete book card button
+    let deleteBtn = document.createElement("button");
+    deleteBtn.setAttribute("id", `${[i]}`);
+    deleteBtn.setAttribute("class", "deleteBtn");
+
+    deleteBtn.innerText = "Remove";
+    libraryCard.appendChild(deleteBtn);
+    deleteBtn.addEventListener("click", () => {
+      selectedBookDelete = `${[i]}`;
+
+      deleteBookFun();
+    });
+
+    //adding book to webpage
+    body.appendChild(libraryCard);
+  }
+}
+
+function toggleReadStatus() {
+  let bookList = document.querySelectorAll(".libraryCard");
+  bookList.forEach((newStatus) => {
+    if (newStatus.getAttribute("id") == selectedBookToggle) {
+      let children = newStatus.childNodes;
+      children.forEach((item) => {
+        console.log(item.innerText);
+        if (item.innerText == "Yes") {
+          item.innerText = "No";
+          myLibrary[selectedBookToggle].readStatus = "No";
+        } else if (item.innerText == "No") {
+          item.innerText = "Yes";
+          myLibrary[selectedBookToggle].readStatus = "Yes";
+        }
+        console.log(item);
+      });
+    }
+  });
+  let existingCards = document.querySelectorAll(".libraryCard");
+  existingCards.forEach((libraryCard) => {
+    libraryCard.remove();
+  });
+  for (let i in myLibrary) {
+    let body = document.querySelector(".library");
+    let libraryCard = document.createElement("div");
+    libraryCard.setAttribute("class", "libraryCard");
+    libraryCard.setAttribute("id", `${[i]}`);
+
+    //looping oeach book object to obtain properties
+    for (let key in myLibrary[i]) {
+      if (key != "addBookToArray") {
+        let bookProperty = document.createElement("p");
+        bookProperty.innerText = myLibrary[i][key];
+        libraryCard.appendChild(bookProperty);
+      } else {
+        break;
+      }
+    }
+    let toggleStatusBtn = document.createElement("button");
+    toggleStatusBtn.setAttribute("class", "toggleBtn");
+    toggleStatusBtn.setAttribute("id", `${[i]}toggle`);
+    toggleStatusBtn.innerText = "Change Status";
+    libraryCard.appendChild(toggleStatusBtn);
+    toggleStatusBtn.onclick = function () {
+      selectedBookToggle = `${[i]}`;
+      toggleReadStatus();
+    };
     //delete book card button
     let deleteBtn = document.createElement("button");
     deleteBtn.setAttribute("id", `${[i]}`);
