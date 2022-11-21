@@ -5,17 +5,29 @@ let selectedBookDelete = "";
 let selectedBookToggle = "";
 
 //book constructor
-function Book(title, author, pages, readStatus) {
+/*function Book(title, author, pages, readStatus) {
   this.title = title;
   this.author = author;
   this.pages = pages;
   this.readStatus = readStatus;
+}*/
+
+class Book {
+  constructor(title, author, pages, readStatus) {
+    this.title = title;
+    this.author = author;
+    this.pages = pages;
+    this.readStatus = readStatus;
+  }
+  addBookToArray() {
+    myLibrary.push(this);
+  }
 }
 
 //prototype function that will add the book object to the global array when called
-Book.prototype.addBookToArray = function () {
+/*Book.prototype.addBookToArray = function () {
   myLibrary.push(this);
-};
+};*/
 
 //pre-made book objects for testing
 
